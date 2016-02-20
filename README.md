@@ -1,6 +1,6 @@
 # Unicode Font Fixer
 
-This is a minecraft mod to fix broken text caused by small Unicode font.
+This is a minecraft mod fixes broken text caused by small Unicode font.
 
 See [http://minecraft.curseforge.com/projects/unicode-font-fixer][1] for details.
 
