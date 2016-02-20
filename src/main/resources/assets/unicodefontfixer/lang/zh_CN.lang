@@ -1,0 +1,12 @@
+config.unicodefontfixer.blacklist=黑名单中的Mod将不会被执行字体修复.
+
+config.unicodefontfixer.fixDerpyFont=设置字体修复的方法,可用参数如下:
+config.unicodefontfixer.fixDerpyFont.disabled=不调整任何文字的大小.
+config.unicodefontfixer.fixDerpyFont.always=无论是哪种字体,始终对文字作调整.
+config.unicodefontfixer.fixDerpyFont.moderate=只有在中英文均为Unicode字体时,才对文字作调整.
+config.unicodefontfixer.fixDerpyFont.hint=建议将[fixDerpyFont]设置为moderate，并在游戏的语言选项中打开[强制使用Unicode字体]
+
+options.unicodefontfixer.fixDerpyFont=修复难以看清的小字
+options.unicodefontfixer.fixDerpyFont.disabled=禁用
+options.unicodefontfixer.fixDerpyFont.always=始终
+options.unicodefontfixer.fixDerpyFont.moderate=保守

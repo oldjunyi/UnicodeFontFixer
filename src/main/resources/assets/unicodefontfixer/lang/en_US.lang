@@ -1,0 +1,12 @@
+config.unicodefontfixer.blacklist=Mods in the blacklist will be ignored.
+
+config.unicodefontfixer.fixDerpyFont=The method to fix derpy Text. Available parameters:
+config.unicodefontfixer.fixDerpyFont.disabled=Stop doing any font fixing.
+config.unicodefontfixer.fixDerpyFont.always=Apply font fixer regardless of the font type.
+config.unicodefontfixer.fixDerpyFont.moderate=Only work when all characters are displayed in Unicode font.
+config.unicodefontfixer.fixDerpyFont.hint=I think the best practice is setting [fixDerpyFont] to moderate and turn on [Force Unicode Font] in game.
+
+options.unicodefontfixer.fixDerpyFont=Fix Derpy Text
+options.unicodefontfixer.fixDerpyFont.disabled=Disabled
+options.unicodefontfixer.fixDerpyFont.always=Always
+options.unicodefontfixer.fixDerpyFont.moderate=Moderate

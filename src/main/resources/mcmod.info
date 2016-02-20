@@ -1,0 +1,16 @@
+[
+{
+  "modid": "UnicodeFontFixer",
+  "name": "UnicodeFontFixer",
+  "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "www.mmyzd.com",
+  "updateUrl": "",
+  "authorList": ["oldjunyi"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
