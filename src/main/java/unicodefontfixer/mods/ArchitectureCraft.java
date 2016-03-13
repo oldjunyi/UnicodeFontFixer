@@ -13,7 +13,7 @@ public class ArchitectureCraft implements ModHandler {
 
 	@Override
 	public void registerAdapters(HashMap<String, RenderingAdapter>[] adapters) {
-		adapters[0].put("gcewing.architecture.BaseGui$Screen.drawString", new RenderingAdapter());
+		adapters[0].put("gcewing.architecture.BaseGui$Screen", new RenderingAdapter());
 	}
 	
 }
