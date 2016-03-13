@@ -55,7 +55,8 @@ public class FontRendererEx extends FontRenderer {
 		Double ratio = null;
 		boolean pop = false;
 		proxy.FONT_HEIGHT = this.FONT_HEIGHT;
-		if (GL11.glGetFloat(GL11.GL_MODELVIEW_MATRIX) < 0.9999 && ((policy == 2 && this.getUnicodeFlag()) || policy == 1)) {
+		double rawScale = GL11.glGetFloat(GL11.GL_MODELVIEW_MATRIX);
+		if (rawScale >= 0.25 && rawScale < 1.0 && ((policy == 2 && this.getUnicodeFlag()) || policy == 1)) {
 			GL11.glPushMatrix();
 			pop = true;
 			int idx = stackDepth + 1;
@@ -82,7 +83,6 @@ public class FontRendererEx extends FontRenderer {
 	
 	public double getScaleRatio(String string) {
 		Double ratio = null;
-		proxy.FONT_HEIGHT = this.FONT_HEIGHT;
 		if (string != null && ((policy == 2 && this.getUnicodeFlag()) || policy == 1)) {
 			final CallerClassTracer cct = new CallerClassTracer();
 			String caller = cct.getCaller(stackDepth + 3).getName(); 
@@ -90,6 +90,7 @@ public class FontRendererEx extends FontRenderer {
 			if (worker != null) ratio = worker.resize(string);
 			if (ratio  == null) ratio = textScale.get(string.trim() + "@" + caller);
 		}
+		proxy.FONT_HEIGHT = this.FONT_HEIGHT;
 		return ratio == null ? 1.0 : ratio;
 	}
 	

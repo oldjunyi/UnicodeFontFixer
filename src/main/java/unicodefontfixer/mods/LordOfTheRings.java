@@ -19,7 +19,7 @@ public class LordOfTheRings implements ModHandler {
 			@Override
 			public Double resize(String text) {
 				double ret = GL11.glGetFloat(GL11.GL_MODELVIEW_MATRIX);
-				return ret > 0.2 && ret < 1.0 ? ret : null;
+				return ret >= 0.25 && ret < 1.0 ? ret : null;
 			}
 		});
 	}

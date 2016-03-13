@@ -36,11 +36,14 @@ public class ConfigManager {
 		mods.add(new ThaumicHorizons());
 		mods.add(new BetterRecords());
 		mods.add(new LordOfTheRings());
+		mods.add(new ArchitectureCraft());
+		mods.add(new PneumaticCraft());
+		mods.add(new Botania());
 	}
 	
 	@SubscribeEvent
 	public void onConfigurationChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-		if (event.modID.equals(UnicodeFontFixer.MODID)) reload();
+		if (event.modID.equals(UnicodeFontFixer.MODID)) update();
 	}
 	
 	public void reload() {
