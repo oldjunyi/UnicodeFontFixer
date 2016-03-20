@@ -14,13 +14,13 @@ import net.minecraftforge.common.config.Property;
 
 public class ConfigManager {
 
-	public Configuration config;
+	public Configuration file;
 	public Property fixDerpyFont;
 	public Property blacklist;
 	public ArrayList<ModHandler> mods = new ArrayList();
 	
 	public ConfigManager(File configDir) {
-		config = new Configuration(new File(configDir, "UnicodeFontFixer.cfg"));
+		file = new Configuration(new File(configDir, "UnicodeFontFixer.cfg"));
 		mods.add(new Thaumcraft());
 		mods.add(new Forestry());
 		mods.add(new StevesFactoryManager());
@@ -39,6 +39,7 @@ public class ConfigManager {
 		mods.add(new ArchitectureCraft());
 		mods.add(new PneumaticCraft());
 		mods.add(new Botania());
+		mods.add(new Mekanism());
 	}
 	
 	@SubscribeEvent
@@ -47,10 +48,19 @@ public class ConfigManager {
 	}
 	
 	public void reload() {
-		config.load();
-		
-		blacklist = config.get("general", "blacklist", new String[] {"Example Mod", "ExampleCraft|Factory"});
+		file.load();
+		blacklist = file.get("general", "blacklist", new String[] {"Example Mod", "ExampleCraft|Factory"});
 		blacklist.comment = StatCollector.translateToLocal("config.unicodefontfixer.blacklist");
+		fixDerpyFont = file.get("general", "fixDerpyFont", "always");
+		fixDerpyFont.comment = StatCollector.translateToLocal("config.unicodefontfixer.fixDerpyFont");
+		fixDerpyFont.comment += "\n  disabled: " + StatCollector.translateToLocal("config.unicodefontfixer.fixDerpyFont.disabled");
+		fixDerpyFont.comment += "\n  always: " + StatCollector.translateToLocal("config.unicodefontfixer.fixDerpyFont.always");
+		fixDerpyFont.comment += "\n  moderate: " + StatCollector.translateToLocal("config.unicodefontfixer.fixDerpyFont.moderate");
+		fixDerpyFont.comment += "\n" + StatCollector.translateToLocal("config.unicodefontfixer.fixDerpyFont.hint");
+		update();
+	}
+	
+	public void update() {
 		String[] blackNames = blacklist.getStringList();
 		for (int i = 0; i < FontRendererEx.adapters.length; i++) FontRendererEx.adapters[i].clear();
 		for (int i = 0; i < mods.size(); i++) {
@@ -65,13 +75,6 @@ public class ConfigManager {
 			}
 			if (!exclude) mh.registerAdapters(FontRendererEx.adapters);
 		}
-		
-		fixDerpyFont = config.get("general", "fixDerpyFont", "always");
-		fixDerpyFont.comment = StatCollector.translateToLocal("config.unicodefontfixer.fixDerpyFont");
-		fixDerpyFont.comment += "\n  disabled: " + StatCollector.translateToLocal("config.unicodefontfixer.fixDerpyFont.disabled");
-		fixDerpyFont.comment += "\n  always: " + StatCollector.translateToLocal("config.unicodefontfixer.fixDerpyFont.always");
-		fixDerpyFont.comment += "\n  moderate: " + StatCollector.translateToLocal("config.unicodefontfixer.fixDerpyFont.moderate");
-		fixDerpyFont.comment += "\n" + StatCollector.translateToLocal("config.unicodefontfixer.fixDerpyFont.hint");
 		if (fixDerpyFont.getString().toLowerCase().equals("moderate")) {
 			fixDerpyFont.set("moderate");
 			FontRendererEx.policy = 2;
@@ -82,12 +85,7 @@ public class ConfigManager {
 			fixDerpyFont.set("always");
 			FontRendererEx.policy = 1;
 		}
-		
-		config.save();
-	}
-	
-	public void update() {
-		config.save();
+		file.save();
 	}
 	
 }
